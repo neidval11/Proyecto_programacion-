@@ -1,4 +1,10 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+
+
+    #   aqui se definen los modelos o tablas de la base de datos, que luego al aplicar migraciones 
+
+    #   se van a crear en la base de datos de django que en este caso utiliza SQLite
 
 class Aula_o_Laboratorio(models.Model):
 
@@ -12,55 +18,64 @@ class Aula_o_Laboratorio(models.Model):
     def __str__(self):
          return self.id_aula
 
-'''
-class Horario(models.Model):
-    DIAS_SEMANA = [
-        ('LUN', 'Lunes'),
-        ('MAR', 'Martes'),
-        ('MIE', 'Miércoles'),
-        ('JUE', 'Jueves'),
-        ('VIE', 'Viernes'),
-        ('SAB', 'Sábado'),
-        ('DOM', 'Domingo'),
-    ]'''
-
-class Horario_y_materia(models.Model):
-    id_horario = models.CharField(primary_key=True, max_length=20,null=False)
-    materia = models.CharField(max_length=100, null= False)
-    dia = models.CharField(max_length=20)
-    hora_inicio = models.TimeField()
-    hora_fin = models.TimeField()
-    grupo = models.CharField(max_length=20)
-    docente = models.CharField(max_length=100)
-    num_estudiantes = models.IntegerField()
-
-
-
-    def __str__(self):
-        return self.materia
-
-    
 
 
 class Asignatura (models.Model):
 
-    id_asignatura = models.CharField(primary_key=True, max_length=10,null=False)
-    nombre_asignatura = models.CharField(max_length=100)
-    docente_asignatura = models.CharField(max_length=60)
+    id_asignatura = models.CharField(max_length=10,null=False)
+    nombre_asignatura = models.CharField(primary_key=True, max_length=100)
     progr_academico = models.CharField(max_length=100)
-    num_creditos = models.IntegerField()
-    duracion_en_horas = models.IntegerField()
-    horario_materia = models.CharField(max_length=100, null= True)
+    num_creditos = models.IntegerField(validators=[MinValueValidator(1)])
+    duracion_en_horas = models.IntegerField(validators=[MinValueValidator(1)])
+
 
 
     def __str__(self):
         return self.nombre_asignatura
 
+
+class Horario_y_materia(models.Model):
+    
+    DIAS = {
+
+        "Lun": "Lunes",
+        "Mar": "Martes",
+        "Mie": "Miercoles",
+        "Jue": "Jueves",
+        "Vie": "Viernes"
+    } 
+
+    id_materia = models.CharField(primary_key=True, max_length=20,null=False)
+    materia = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
+    grupo = models.CharField(max_length=20)
+    dia = models.CharField(max_length=3, choices=DIAS)
+    hora_inicio = models.TimeField()
+    hora_fin = models.TimeField()
+    num_estudiantes = models.IntegerField(validators=[MinValueValidator(1)])
+
+
+
+    def __str__(self):
+        return self.id_materia
+
+
+class Docentes (models.Model):
+    id_docente = models.CharField(primary_key=True, max_length=12)
+    nombre_docente = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre_docente    
+
+
+
 class Asignacion (models.Model):
     id_asignacion = models.AutoField(primary_key=True)
-    nombre_asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
+    nombre_asignatura = models.ForeignKey(Horario_y_materia, on_delete=models.CASCADE)
     id_aula = models.ForeignKey(Aula_o_Laboratorio, on_delete=models.CASCADE)
-    id_horario = models.ForeignKey(Horario_y_materia, on_delete=models.CASCADE)
+    id_docente = models.ForeignKey(Docentes, on_delete=models.CASCADE)
+    
+    
 
 
-    def __str__(self): return f'Asignación {self.id_asignacion}'
+    def __str__(self): return f'Asignación {self.nombre_asignatura}'
+

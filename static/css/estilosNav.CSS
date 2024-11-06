@@ -1,32 +1,14 @@
-     /* Estilos para el contenedor del menú de navegación */
-     nav {
-        background-color:darkslateblue   ;
-        overflow: hidden;
-      }
+/* styles.css */
 
-      /* Estilos para los enlaces del menú de navegación */
-nav a {
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        list-style: none;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-size: larger;
+/* Estilos para la barra de navegación con transparencia */
+.navbar.bg-primary {
+  background-color: rgba(0, 123, 255, 0.8) ; /* Cambia el último valor para ajustar la transparencia */
+}
 
-      }
-
-      /* Estilos para el efecto hover en los enlaces */
-nav a:hover {
-        background-color: #ddd;
-        color: black;
-      }
-
-      /* Estilos para el menú en dispositivos móviles */
-@media screen and (max-width: 600px) {
-        nav a {
-          float: none;
-          width: 100%;
-        }
-      }
+/* Opcional: ajusta los enlaces para que sean más visibles en un fondo semitransparente */
+.navbar .nav-link {
+  color: #fff;
+}
+.navbar .nav-link:hover {
+  color: #ddd;
+}

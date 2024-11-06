@@ -1,9 +1,47 @@
 {% extends 'nav.html' %}
-
+{% load static %}
 {% block content %}
+
 <h1>Aqui se muestran las asignaciones</h1>
+
+<table border="1">
+    <tr>
+        <th>ID Asignacion</th>
+        <th>Asignatura</th>
+        <th>Aula</th>
+        <th>Horario</th>
+    </tr>
+    {% for asignacion in asignaciones %}
+    <tr>
+        <td>{{ asignacion.id_asignacion }}</td>
+        <td>{{ asignacion.nombre_asignatura.materia }}</td>
+        <td>{{ asignacion.id_aula.id_aula }}</td>
+        <td>{{ asignacion.id_horario.dia }} {{ asignacion.id_horario.hora_inicio }} - {{ asignacion.id_horario.hora_fin }}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
 
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, nulla numquam odio hic quos ad ipsam quod quidem quas sit, cupiditate harum laborum unde reiciendis iusto natus. Repellendus, laborum nihil!</p>
 
 {% endblock %}

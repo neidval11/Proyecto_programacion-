@@ -6,6 +6,7 @@
 <head>
     <title>Dashboard de Asignaciones</title>
     <link rel= "stylesheet" type= "text/css" href="{% static 'css/estiloDashboard.css' %}"  />
+    
 </head>
 
 
@@ -16,22 +17,9 @@
 
 <body>
     <h1>Asignaciones de Aulas</h1>
-    <table border="1">
-        <tr>
-            <th>ID Asignacion</th>
-            <th>Asignatura</th>
-            <th>Aula</th>
-            <th>Horario</th>
-        </tr>
-        {% for asignacion in asignaciones %}
-        <tr>
-            <td>{{ asignacion.id_asignacion }}</td>
-            <td>{{ asignacion.nombre_asignatura.materia }}</td>
-            <td>{{ asignacion.id_aula.id_aula }}</td>
-            <td>{{ asignacion.id_horario.dia }} {{ asignacion.id_horario.hora_inicio }} - {{ asignacion.id_horario.hora_fin }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    
+
+    <img src="/static/imagenes/dashboard.png" alt="">
 </body>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-from .models import Aula_o_Laboratorio, Asignatura, Horario_y_materia, Asignacion
+from .models import Aula_o_Laboratorio, Asignatura, Horario_y_materia, Asignacion, Docentes
 
 
 
@@ -15,7 +15,8 @@ def asignar_aulas():
         if aula_disponible:
             Asignacion.objects.create(
                 nombre_asignatura=horario,
-                id_aula=aula_disponible,
-                id_horario=horario
+                id_aula=aula_disponible
+                
             )
+            break
 

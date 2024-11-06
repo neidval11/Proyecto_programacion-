@@ -1,0 +1,17 @@
+{% extends 'nav.html' %}
+
+
+{% block content %} 
+
+Mi Admin - {{ block.super }}
+
+<nav>
+    <ul>
+        <li><a href="/admin/">Inicio Admin</a></li>
+        <li><a href="/verasignacion">Asignacion</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/ingresaradmin">Admin</a></li>
+    </ul>
+</nav> {{ block.super }} 
+
+{% endblock %}

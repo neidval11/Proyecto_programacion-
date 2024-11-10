@@ -10,9 +10,13 @@ def realizar_asignaciones(modeladmin, request, queryset):
 
 realizar_asignaciones.short_description = "Realizar Asignaciones Automáticamente"
 
-class Horario_y_materiaAdmin(admin.ModelAdmin, admin.TabularInline):
+class Horario_y_materiaAdmin(admin.ModelAdmin):
     actions = [realizar_asignaciones]
     list_display = ["nombre_asignatura", "id_aula", "id_docente"]
+
+class AsignacionAdmin(admin.ModelAdmin):
+    list_display = ('id_asignacion', 'nombre_asignatura', 'id_aula')
+
 
 class HorarioAdmin(admin.ModelAdmin): form = HorarioForm 
 

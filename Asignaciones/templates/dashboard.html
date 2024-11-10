@@ -2,26 +2,33 @@
 {% load static %}
 
 
-<html>
-<head>
-    <title>Dashboard de Asignaciones</title>
-    <link rel= "stylesheet" type= "text/css" href="{% static 'css/estiloDashboard.css' %}"  />
-    
-</head>
-
-
-
 {% block content %}
 
 
 
-<body>
-    <h1>Asignaciones de Aulas</h1>
-    
+<html>
 
-    <img src="/static/imagenes/dashboard.png" alt="">
+<head>
+    <title>Dashboard de Asignaciones</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilosIndex.css' %}" />
+
+</head>
+
+
+
+<body class="dashboard">
+
+    <h1>Dashboard</h1>
+        {% block grafico1 %}
+
+    <h2>Ocupación Actual de Aulas</h2> <img src="data:image/png;base64,{{ graph }}"
+        alt="Gráfico de Ocupación de Aulas" />
+        {% endblock %}
+
+
 </body>
 
 {% endblock %}
-</html>
 
+</html>

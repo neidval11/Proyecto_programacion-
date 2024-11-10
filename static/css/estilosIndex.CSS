@@ -1,0 +1,19 @@
+.index{
+    padding-left:  10px;
+    padding-right: 10px;
+    background-color: rgba(34, 37, 56, 0.589);
+}
+h1{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+.dashboard{
+    padding-left:  10px;
+    padding-right: 10px;
+    background-color: rgba(34, 37, 56, 0.589);
+}

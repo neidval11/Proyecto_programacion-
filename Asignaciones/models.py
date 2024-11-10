@@ -22,9 +22,24 @@ class Aula_o_Laboratorio(models.Model):
 
 class Asignatura (models.Model):
 
-    id_asignatura = models.CharField(max_length=10,null=False)
+    SEMESTRE = {
+
+        "1": "Primero",
+        "2": "Segundo",
+        "3": "Tercero",
+        "4": "Cuarto",
+        "5": "Quinto",
+        "6": "Sexto",
+        "7": "Septimo",
+        "8": "Octavo",
+        "9": "Noveno",
+        "10": "Decimo"
+        } 
+
+    id_asignatura = models.CharField(max_length=10,null=False, unique=True)
     nombre_asignatura = models.CharField(primary_key=True, max_length=100)
     progr_academico = models.CharField(max_length=100)
+    semestre = models.CharField(max_length=20, choices=SEMESTRE)
     num_creditos = models.IntegerField(validators=[MinValueValidator(1)])
     duracion_en_horas = models.IntegerField(validators=[MinValueValidator(1)])
 
@@ -55,9 +70,9 @@ class Horario_y_materia(models.Model):
 
 
 
-    def __str__(self):
-        return self.id_materia
-
+    def __str__(self): return str(self.materia)
+        
+ 
 
 class Docentes (models.Model):
     id_docente = models.CharField(primary_key=True, max_length=12)
@@ -77,5 +92,4 @@ class Asignacion (models.Model):
     
 
 
-    def __str__(self): return f'Asignación {self.nombre_asignatura}'
-
+    def __str__(self): return f"{self.nombre_asignatura.materia} en {self.id_aula} con el docente {self.id_docente}"

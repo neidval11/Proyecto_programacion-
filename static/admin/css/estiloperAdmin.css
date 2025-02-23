@@ -1,0 +1,204 @@
+/* Cambiar colores principales */
+:root {
+    --primary: #2c3e50;  /* Color primario */
+    --secondary: #34495e; /* Color secundario */
+    --accent: #3498db;   /* Color de acento */
+    --primary-fg: #fff;  /* Color de texto sobre fondo primario */
+  }
+  
+  /* Personalizar barra superior */
+  #header {
+    height: 30%;
+    background-color: #07253a;
+    color: var(--primary-fg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+
+  #logo_admin {
+    height: 70px;
+  }
+  
+  /* Logo y Título */
+  #site-name a {
+    font-weight: bold;
+    font-size: xx-large;
+  }
+  
+  /* Menú de navegación */
+  .module h2, .module caption {
+    background: var(--secondary);
+  }
+  
+  /* Estilo para los enlaces del menú */
+  #nav-sidebar .nav-item a {
+    color: #333;
+    transition: all 0.3s;
+  }
+  
+  #nav-sidebar .nav-item a:hover,
+  #nav-sidebar .nav-item a:focus {
+    background-color: var(--accent);
+    color: white;
+  }
+  
+  /* Menú desplegable */
+  #nav-sidebar .nav-item .nav-children {
+    background-color: #f5f5f5;
+  }
+  
+  /* Elemento activo del menú */
+  #nav-sidebar .nav-item.selected a {
+    background-color: var(--accent);
+    color: white;
+  }
+  
+  /* Redondear los bordes de los módulos */
+  .module {
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Estilos para el contenedor principal de aplicaciones */
+.module {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    overflow: hidden;
+    background-color: #fff;
+    border: none;
+  }
+  
+  /* Estilo para el título de la aplicación */
+  .module caption {
+    background: #2c3e50;
+    border-radius: 8px 8px 0 0;
+    padding: 15px;
+  }
+  
+  .module caption a.section {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+  }
+  
+  .module caption a.section:hover {
+    color: #3498db;
+  }
+  
+  /* Estilo para la tabla */
+  .module table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Estilo para las filas de modelos */
+  .module tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .module tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .module tr.current-model {
+    background-color: rgba(52, 152, 219, 0.1);
+  }
+  
+  /* Estilo para el nombre del modelo */
+  .module th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 500;
+    width: 60%;
+  }
+  
+  .module th a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .module th a:hover {
+    color: #3498db;
+  }
+  
+  /* Estilo para las celdas de acciones */
+  .module td {
+    padding: 12px 8px;
+    text-align: center;
+  }
+  
+  /* Estilos para los enlaces de acción */
+  .addlink, .changelink, .viewlink {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .addlink {
+    background-color: #09cf5b;
+    color: white;
+  }
+  
+  .addlink:hover {
+    background-color: #2ecc71;
+    box-shadow: 0 2px 5px rgba(39, 174, 96, 0.3);
+  }
+  
+  .changelink {
+    background-color: #f39c12;
+    color: white;
+  }
+  
+  .changelink:hover {
+    background-color: #f1c40f;
+    box-shadow: 0 2px 5px rgba(243, 156, 18, 0.3);
+  }
+  
+  .viewlink {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .viewlink:hover {
+    background-color: #2980b9;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+  }
+  
+  /* Estilo para el mensaje de permiso denegado */
+  .module p {
+    padding: 20px;
+    color: #7f8c8d;
+    font-style: italic;
+    text-align: center;
+  }
+  
+  /* Estilo para la aplicación actual */
+  .current-app caption {
+    background-color: #34495e;
+  }
+  
+  /* Responsive design para pantallas pequeñas */
+  @media (max-width: 767px) {
+    .module th, .module td {
+      padding: 10px 8px;
+    }
+    
+    .addlink, .changelink, .viewlink {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+  }
+  

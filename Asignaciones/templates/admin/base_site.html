@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Administrador') }}{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/estiloperAdmin.css' %}" />
+{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+      <img id="logo_admin" src="{% static 'imagenes/admin.png' %}" alt="Logo" height="40">
+      Sitio Administrativo
+    </a>
+  </h1>
+{% endblock %}

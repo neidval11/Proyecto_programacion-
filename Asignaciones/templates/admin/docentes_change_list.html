@@ -1,0 +1,29 @@
+{% extends 'admin/change_list.html' %}
+{% block content %}
+    <h1>Disponibilidad de Docentes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Docente</th>
+                <th>Día</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for disponibilidad in disponibilidad %}
+                <tr>
+                    <td>{{ disponibilidad.docente.nombre_docente }}</td>
+                    <td>{{ disponibilidad.dia }}</td>
+                    <td>{{ disponibilidad.hora_inicio }}</td>
+                    <td>{{ disponibilidad.hora_fin }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="post" action="{% url 'admin:asignar_horarios' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Asignar Horarios y Aulas</button>
+    </form>
+{% endblock %}

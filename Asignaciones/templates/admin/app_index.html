@@ -5,6 +5,7 @@
 {% load static %}
 
 
+
 {% block extrastyle %}
 <link rel="stylesheet" href="{% static 'css/segundomenu.css' %}">
 {% endblock %}
@@ -15,7 +16,7 @@
 {% block nav-breadcrumbs %}
 <nav>
 <div class="breadcrumbs">
-<a href="{% url 'admin:index' %}">Hola</a>
+<a href="{% url 'admin:index' %}">Inicio</a>
 &rsaquo;
 {% for app in app_list %}
 {{ app.name }}

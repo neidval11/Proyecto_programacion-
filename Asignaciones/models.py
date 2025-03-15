@@ -69,8 +69,8 @@ class Horario_y_materia(models.Model):
     num_estudiantes = models.IntegerField(validators=[MinValueValidator(1)])
 
 
-
     def __str__(self): return str(self.materia)
+
         
  
 
@@ -81,6 +81,20 @@ class Docentes (models.Model):
     def __str__(self):
         return self.nombre_docente    
 
+class DisponibilidadDocente(models.Model):
+    docente = models.ForeignKey(Docentes, on_delete=models.CASCADE)
+    dia = models.CharField(max_length=10, choices=(
+        ('Lunes', 'Lunes'),
+        ('Martes', 'Martes'),
+        ('Miércoles', 'Miércoles'),
+        ('Jueves', 'Jueves'),
+        ('Viernes', 'Viernes'),
+    ))
+    hora_inicio = models.TimeField()
+    hora_fin = models.TimeField()
+
+    def __str__(self):
+        return f'{self.docente.nombre_docente} - {self.dia} {self.hora_inicio}-{self.hora_fin}'
 
 
 class Asignacion (models.Model):

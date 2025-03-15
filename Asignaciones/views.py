@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from.logicaAsignacion import asignar_aulas
+from.logicaAsignacion import asignar_horarios_y_aulas
 from.models import Asignacion, Aula_o_Laboratorio
 import matplotlib as plt
 import io
@@ -11,6 +11,11 @@ import matplotlib.pyplot as plt
 
     #   aqui se definen los metodos que van a ser llamados desde las urls,
     #   tambien estos mismos metodos van a llamar a los archivos HTML con el contenido de cada vista
+
+
+def inicio(request):
+    return render(request, 'inicio.html')
+
 
 def verAsignacion(request):
     asignaciones = Asignacion.objects.all()
@@ -46,8 +51,7 @@ def mostrarDashboard(request):
     return render(request, 'dashboard.html', context)
 
 
-def mostrarNav(request):
-    return render (request, 'nav.html')
+
 
 def realizarAsignacion(request):
     

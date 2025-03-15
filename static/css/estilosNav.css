@@ -1,0 +1,103 @@
+
+
+/* Reset de márgenes y paddings */
+.d-flex {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+/* Estilo para el wrapper */
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+/* Estilo para el menú lateral */
+
+.sidebar {
+  background-color: #007bff;
+  color: white;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Ocultar al principio */
+  transition: 0.3s;
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  background-color: #0056b3;
+}
+
+.sidebar-header h3 {
+  color: white;
+  margin-top: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para el contenido */
+#content {
+  margin-left: 250px; /* Espacio para el menú lateral */
+  padding: 20px;
+  width: 100%;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+/* Botón de toggle para el menú lateral */
+#sidebarToggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+      flex-direction: column;
+  }
+
+  /* Menú lateral para pantallas pequeñas */
+  .sidebar {
+      width: 100%;
+      left: -100%;
+  }
+
+  .wrapper.active .sidebar {
+      left: 0;
+  }
+
+  /* Mover el contenido a la parte superior cuando el menú lateral está activado */
+  #content {
+      margin-left: 0;
+  }
+
+  /* Mostrar el botón de toggle */
+  #sidebarToggle {
+      display: block;
+  }
+}

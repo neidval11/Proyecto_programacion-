@@ -2,47 +2,55 @@ from django.contrib import admin
 from Asignaciones.models import Asignacion, Asignatura, Aula_o_Laboratorio, Horario_y_materia, Docentes, DisponibilidadDocente
 from django.http import HttpResponse
 from .formulario import HorarioForm
-
+from django.db import transaction
+from django.utils.html import format_html
 import openpyxl 
 from .models import Asignacion
 from .logicaAsignacion import asignar_horarios_y_aulas 
-
-
+from django.shortcuts import render
 
 def asignar_horarios(modeladmin, request, queryset):
+    
+    #Función que ejecuta la asignación automática de horarios y aulas.
+    
     asignar_horarios_y_aulas()
     modeladmin.message_user(request, "Horarios y aulas asignados correctamente.")
-    
+
+    # Renderiza la plantilla directamente para mostrar los resultados en el admin
+    docentes = Docentes.objects.all()
+    disponibilidad = DisponibilidadDocente.objects.all()
+    return render(request, "admin/docentes_change_list.html", {
+        "docentes": docentes,
+        "disponibilidad": disponibilidad,
+    })
+
 @admin.register(Asignacion)
 class AsignacionAdmin(admin.ModelAdmin):
-    list_display = ['id_asignacion', 'nombre_asignatura', 'id_aula', 'id_docente']  # Campos a mostrar en el admin
-    actions = [asignar_horarios]  # Agregar la acción personalizada
+    list_display = ['id_asignacion', 'get_nombre_asignatura', 'id_aula', 'id_docente']
+    
+    def get_nombre_asignatura(self, obj):
+        return obj.nombre_asignatura.materia.nombre_asignatura  # Accede al nombre real de la asignatura
+    
+    get_nombre_asignatura.short_description = "Asignatura"  # Nombre de la columna en el admin
 
 
 @admin.register(Docentes)
 class DocentesAdmin(admin.ModelAdmin):
-    change_list_template = 'admin/docentes_change_list.html'  # Usamos un template personalizado para docentes
+    change_list_template = "admin/docentes_change_list.html"
 
     def changelist_view(self, request, extra_context=None):
+        """
+        Vista personalizada del listado de docentes en el admin.
+        """
         docentes = Docentes.objects.all()
         disponibilidad = DisponibilidadDocente.objects.all()
         extra_context = extra_context or {}
-        extra_context['docentes'] = docentes
-        extra_context['disponibilidad'] = disponibilidad
+        extra_context["docentes"] = docentes
+        extra_context["disponibilidad"] = disponibilidad
         return super().changelist_view(request, extra_context=extra_context)
-
-
-'''def realizar_asignaciones(modeladmin, request, queryset):
     
-    modeladmin.message_user(request, "Asignaciones realizadas exitosamente")
-'''
-'''
-realizar_asignaciones.short_description = "Realizar Asignaciones Automáticamente"
 
-class Horario_y_materiaAdmin(admin.ModelAdmin):
-    actions = [realizar_asignaciones]
-    list_display = ["nombre_asignatura", "id_aula", "id_docente"]
-'''
+
 class HorarioAdmin(admin.ModelAdmin): form = HorarioForm 
 
 
@@ -94,5 +102,3 @@ admin.site.register(Aula_o_Laboratorio)
 admin.site.register(Horario_y_materia, HorarioAdmin)
 #admin.site.register(Docentes)
 admin.site.register(DisponibilidadDocente)
-
-

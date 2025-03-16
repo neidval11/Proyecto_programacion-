@@ -50,26 +50,25 @@ class Asignatura (models.Model):
 
 
 class Horario_y_materia(models.Model):
+    DIAS = [
+        ("Lun", "Lunes"),
+        ("Mar", "Martes"),
+        ("Mie", "Miércoles"),
+        ("Jue", "Jueves"),
+        ("Vie", "Viernes"),
+    ]
     
-    DIAS = {
+    id_materia = models.CharField(primary_key=True, max_length=20, null=False)
 
-        "Lun": "Lunes",
-        "Mar": "Martes",
-        "Mie": "Miercoles",
-        "Jue": "Jueves",
-        "Vie": "Viernes"
-    } 
-
-    id_materia = models.CharField(primary_key=True, max_length=20,null=False)
     materia = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
-    grupo = models.CharField(max_length=20)
-    dia = models.CharField(max_length=3, choices=DIAS)
-    hora_inicio = models.TimeField()
-    hora_fin = models.TimeField()
-    num_estudiantes = models.IntegerField(validators=[MinValueValidator(1)])
+    grupo = models.CharField(max_length=20, blank=True, null=True)  # Se puede asignar automáticamente
+    dia = models.CharField(max_length=3, choices=DIAS, blank=True, null=True)
+    hora_inicio = models.TimeField(blank=True, null=True)
+    hora_fin = models.TimeField(blank=True, null=True)
+    num_estudiantes = models.IntegerField(validators=[MinValueValidator(1)], blank=True, null=True)
 
-
-    def __str__(self): return str(self.materia)
+    def __str__(self):
+        return f"{self.materia} - {self.dia} {self.hora_inicio}-{self.hora_fin}"
 
         
  
@@ -96,14 +95,13 @@ class DisponibilidadDocente(models.Model):
     def __str__(self):
         return f'{self.docente.nombre_docente} - {self.dia} {self.hora_inicio}-{self.hora_fin}'
 
-
-class Asignacion (models.Model):
+class Asignacion(models.Model):
+    
     id_asignacion = models.AutoField(primary_key=True)
     nombre_asignatura = models.ForeignKey(Horario_y_materia, on_delete=models.CASCADE)
+    horario = models.ForeignKey(Horario_y_materia, on_delete=models.CASCADE)
     id_aula = models.ForeignKey(Aula_o_Laboratorio, on_delete=models.CASCADE)
     id_docente = models.ForeignKey(Docentes, on_delete=models.CASCADE)
-    
-    
 
-
-    def __str__(self): return f"{self.nombre_asignatura.materia} en {self.id_aula} con el docente {self.id_docente}"
+    def __str__(self):
+             return f"{self.nombre_asignatura.materia} en {self.id_aula} con el docente {self.id_docente}"
